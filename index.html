@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Page Title</title>
 </head>
+
 <body>
   <script>
-    function getComputerChoice(){
+    function getComputerChoice() {
       let num = Math.floor(Math.random() * (3) + 1);
-      let choice="";
+      let choice = "";
 
-      switch (num){
+      switch (num) {
         case 1:
-          choice="Rock";
+          choice = "Rock";
           break;
         case 2:
-          choice="Paper";
+          choice = "Paper";
           break;
         case 3:
-          choice="Scissors";
+          choice = "Scissors";
           break;
         default:
           console.log("heaven help us");
@@ -29,9 +31,30 @@
     }
 
 
+    function getPlayerChoice() {
+      let playerChoice = prompt("Rock, Paper or Scissors?");
+
+      
+      playerChoice = playerChoice.toLowerCase();
+      if (playerChoice == "rock" || playerChoice == "scissors" || playerChoice == "paper") {
+        return playerChoice;
+    }else{
+      alert("Please enter only Rock, Paper or Scissors");
+    }
+  }
+
+    function game(){
+      let CPU = getComputerChoice();
+      let player = playerChoice();
+      console.log(CPU + " " + player);
+    }
+    
+
+
 
 
 
   </script>
 </body>
+
 </html>
