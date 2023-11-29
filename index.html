@@ -46,7 +46,30 @@
     function game(){
       let CPU = getComputerChoice();
       let player = playerChoice();
-      console.log(CPU + " " + player);
+      let result = 0;
+      
+      //return 0 for CPU victories - return 1 for player victories - return 2 for ties
+      if (CPU == "rock" && player == "rock"){
+        return 2;
+      }else if (CPU == "rock" && player == "paper"){
+        return 1;
+      }else if (CPU == "rock" && player == "scissors"){
+        return 0;
+      }else if (CPU == "paper" && player == "rock"){
+        return 0;
+      }else if (CPU == "paper" && player == "paper"){
+        return  2;
+      }else if (CPU == "paper" && player == "scissors"){
+        return 1;
+      }else if (CPU == "scissors" && player == "rock"){
+        return 1;
+      }else if(CPU == "scissors" && player == "paper"){
+        return 0;
+      }else if (CPU == "scissors" && player == "scissors"){
+        return 2;
+      }
+
+      
     }
     
 
