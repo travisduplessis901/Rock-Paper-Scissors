@@ -14,13 +14,13 @@
 
       switch (num) {
         case 1:
-          choice = "Rock";
+          choice = "rock";
           break;
         case 2:
-          choice = "Paper";
+          choice = "paper";
           break;
         case 3:
-          choice = "Scissors";
+          choice = "scissors";
           break;
         default:
           console.log("heaven help us");
@@ -74,11 +74,12 @@
 
     function playRound() {
       let result = "";
+      let gameResult = game();
 
-      if (game() == 0) {
-        winner = "CPU";
-      } else if (game() == 1) {
-        winner = "player";
+      if (gameResult == 0) {
+        result = "CPU";
+      } else if (gameResult == 1) {
+        result = "player";
       } else {
         result = "tie";
       }
@@ -89,34 +90,46 @@
 
     let cpuWins = 0;
     let playerWins = 0;
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < 5; i++) {
 
-      if (playRound() == "player") {
+      let round = playRound();
+      if (round == "player") {
         playerWins = playerWins + 1;
-        console.log("Round" + i + " goes to the player;")
-      } else if (playRound() == "CPU") {
+        console.log("The CPU chose: " + getComputerChoice());
+        console.log("Round " + (i + 1) + " goes to the player!")
+      } else if (round == "CPU") {
         cpuWins = cpuWins + 1;
-        console.log("Round " + i + " goes to the CPU!");
+        console.log("The CPU chose: " + getComputerChoice());
+        console.log("Round " + (i + 1) + " goes to the CPU!");
       } else {
-        console.log("It's a tie!");
+        console.log("The CPU chose: " + getComputerChoice());
+        console.log("Round " + (i + 1) + " is a tie!");
       }
+
+    }
 
       if (cpuWins > playerWins) {
         console.log("The CPU Wins! Try again!");
       } else if (playerWins > cpuWins) {
         console.log("You Win! Well done!");
       } else {
+        console.log("It's a tie, play another round to determine the victor");
         while (cpuWins == playerWins) {
-          console.log("It's a tie, play another round to determine the victor");
-          playRound();
-          if (cpuWins > playerWins) {
-            console.log("The CPU Wins! Try again!");
-          } else if (playerWins > cpuWins) {
-            console.log("You Win! Well done!");
+          
+          let round = playRound();
+          if (round == "player") {
+            console.log("The CPU chose: " + getComputerChoice());
+            console.log("You Win! Well Done!");
+          } else if (round == "CPU") {
+            console.log("The CPU chose: " + getComputerChoice());
+            console.log("The CPU wins ! Try again!");
+          }else{
+            console.log("The CPU chose: " + getComputerChoice());
+            console.log("Another tie! Play again!")
           }
         }
       }
-    }
+    
 
 
 
