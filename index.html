@@ -43,8 +43,8 @@
       }
     }
 
-    function game() {
-      let CPU = getComputerChoice();
+    function game(computerChoice) {
+      let CPU = computerChoice;
       let player = getPlayerChoice();
 
 
@@ -72,9 +72,9 @@
     }
 
 
-    function playRound() {
+    function playRound(computerChoice) {
       let result = "";
-      let gameResult = game();
+      let gameResult = game(computerChoice);
 
       if (gameResult == 0) {
         result = "CPU";
@@ -88,21 +88,23 @@
 
     }
 
+    
     let cpuWins = 0;
     let playerWins = 0;
     for (i = 0; i < 5; i++) {
 
-      let round = playRound();
+      let cpuChoice = getComputerChoice();
+      let round = playRound(cpuChoice);
       if (round == "player") {
         playerWins = playerWins + 1;
-        console.log("The CPU chose: " + getComputerChoice());
+        console.log("The CPU chose: " + cpuChoice);
         console.log("Round " + (i + 1) + " goes to the player!")
       } else if (round == "CPU") {
         cpuWins = cpuWins + 1;
-        console.log("The CPU chose: " + getComputerChoice());
+        console.log("The CPU chose: " + cpuChoice);
         console.log("Round " + (i + 1) + " goes to the CPU!");
       } else {
-        console.log("The CPU chose: " + getComputerChoice());
+        console.log("The CPU chose: " + cpuChoice);
         console.log("Round " + (i + 1) + " is a tie!");
       }
 
@@ -116,15 +118,16 @@
         console.log("It's a tie, play another round to determine the victor");
         while (cpuWins == playerWins) {
           
-          let round = playRound();
+          let cpuChoice = getComputerChoice();
+          let round = playRound(cpuChoice);
           if (round == "player") {
-            console.log("The CPU chose: " + getComputerChoice());
+            console.log("The CPU chose: " + cpuChoice);
             console.log("You Win! Well Done!");
           } else if (round == "CPU") {
-            console.log("The CPU chose: " + getComputerChoice());
+            console.log("The CPU chose: " + cpuChoice);
             console.log("The CPU wins ! Try again!");
           }else{
-            console.log("The CPU chose: " + getComputerChoice());
+            console.log("The CPU chose: " + cpuChoice);
             console.log("Another tie! Play again!")
           }
         }
