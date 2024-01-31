@@ -20,7 +20,7 @@ function getComputerChoice() {
 
   }
 
-
+/*
   function getPlayerChoice() {
     let playerChoice = prompt("Rock, Paper or Scissors?");
 
@@ -32,11 +32,25 @@ function getComputerChoice() {
       alert("Please enter only Rock, Paper or Scissors");
     }
   }
+  */
 
-  function game() {
-    let CPU = getComputerChoice();
-    let player = getPlayerChoice();
 
+//Event listener for buttons
+  const btnRock = document.querySelector('#btnR');
+  const btnScissors = document.querySelector("#btnS");
+  const btnPaper = document.querySelector("#btnP");
+
+
+  btnRock.addEventListener('click' , () => {playRound(btnRock.textContent)});
+  btnScissors.addEventListener('click' , () => {playRound(btnScissors.textContent)});
+  btnPaper.addEventListener('click' , () => {playRound(btnPaper.textContent)});
+
+  
+
+  function game(pChoice, cChoice) {
+    let player = pChoice.toLowerCase();
+    let CPU = cChoice;
+    
 
     //return 0 for CPU victories - return 1 for player victories - return 2 for ties
     if (CPU == "rock" && player == "rock") {
@@ -62,9 +76,9 @@ function getComputerChoice() {
   }
 
 
-  function playRound() {
+  function roundResult(pChoice, cChoice) {
     let result = "";
-    let gameResult = game();
+    let gameResult = game(pChoice, cChoice);
 
     if (gameResult == 0) {
       result = "CPU";
@@ -81,25 +95,30 @@ function getComputerChoice() {
   let cpuWins = 0;
   let playerWins = 0;
   
-  for (i = 0; i < 5; i++) {
+  //for (i = 0; i < 5; i++) {
 
-    let round = playRound();
+  function playRound(pChoice){
+    let cChoice = getComputerChoice();
+
+    let round = roundResult(pChoice, cChoice);
     if (round == "player") {
       playerWins = playerWins + 1;
-      console.log("The CPU chose: " + getComputerChoice());
-      console.log("Round " + (i + 1) + " goes to the player!")
+      console.log("The CPU chose: " + cChoice);
+      console.log("You Win!")
     } else if (round == "CPU") {
       cpuWins = cpuWins + 1;
-      console.log("The CPU chose: " + getComputerChoice());
-      console.log("Round " + (i + 1) + " goes to the CPU!");
+      console.log("The CPU chose: " + cChoice);
+      console.log("The CPU wins :(");
     } else {
-      console.log("The CPU chose: " + getComputerChoice());
-      console.log("Round " + (i + 1) + " is a tie!");
+      console.log("The CPU chose: " + cChoice);
+      console.log("It's a tie! Play again!");
     }
-
   }
-  
 
+  //}
+  
+  
+    /*
     if (cpuWins > playerWins) {
       console.log("The CPU Wins! Try again!");
     } else if (playerWins > cpuWins) {
@@ -120,5 +139,5 @@ function getComputerChoice() {
           console.log("Another tie! Play again!")
         }
       }
-    }
+    }*/
   
