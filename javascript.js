@@ -45,9 +45,20 @@ function getComputerChoice() {
   btnScissors.addEventListener('click' , () => {playRound(btnScissors.textContent)});
   btnPaper.addEventListener('click' , () => {playRound(btnPaper.textContent)});
 
+  const container = document.querySelector("#container");
+  const p = document.createElement('p');
+  const p1 = document.createElement('p');
+  const score = document.createElement('p');
+  container.appendChild(p1);
+  container.appendChild(p);
+  container.appendChild(score);
+  
+  
+
   
 
   function game(pChoice, cChoice) {
+    
     let player = pChoice.toLowerCase();
     let CPU = cChoice;
     
@@ -92,28 +103,57 @@ function getComputerChoice() {
 
   }
 
+  
+
   let cpuWins = 0;
   let playerWins = 0;
   
-  //for (i = 0; i < 5; i++) {
+  
 
   function playRound(pChoice){
     let cChoice = getComputerChoice();
 
     let round = roundResult(pChoice, cChoice);
+
+    
+
     if (round == "player") {
       playerWins = playerWins + 1;
-      console.log("The CPU chose: " + cChoice);
-      console.log("You Win!")
+      p1.textContent = "The CPU chose: " + cChoice;
+      p.textContent = "You Win!";
+      score.textContent = "Player" + playerWins;
     } else if (round == "CPU") {
       cpuWins = cpuWins + 1;
-      console.log("The CPU chose: " + cChoice);
-      console.log("The CPU wins :(");
+      p1.textContent = "The CPU chose: " + cChoice;
+      p.textContent = "The CPU Wins :(";
     } else {
-      console.log("The CPU chose: " + cChoice);
-      console.log("It's a tie! Play again!");
+      p1.textContent = "The CPU chose: " + cChoice;
+      p.textContent = "It's a tie! Play Again!";
     }
   }
+
+    if(playerWins >= 5){
+      alert("You Win");
+      const resetB = document.createElement('button');
+      resetB.textContent = "Play Again!";
+      container.appendChild(resetB);
+      resetB.addEventListener('click', () => {resetEverything()});
+    }else{
+      alert("The CPU Wins!");
+      const resetB = document.createElement('button');
+      resetB.textContent = "Play Again!";
+      container.appendChild(resetB);
+      resetB.addEventListener('click', () => {resetEverything()});
+    }
+
+    function resetEverything(){
+      playerWins = 0;
+      cpuWins = 0;
+      score.textContent = "";
+
+      p.textContent = "";
+      p1.textContent = "";
+    }
 
   //}
   
