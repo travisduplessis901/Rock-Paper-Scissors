@@ -107,14 +107,21 @@ function getComputerChoice() {
       playerWins = playerWins + 1;
       p1.textContent = "The CPU chose: " + cChoice;
       p.textContent = "You Win!";
-      score.textContent = "Player" + playerWins;
+      p.style.color = "white";
+      p1.style.color = "white";
+
     } else if (round == "CPU") {
       cpuWins = cpuWins + 1;
       p1.textContent = "The CPU chose: " + cChoice;
       p.textContent = "The CPU Wins :(";
+      p.style.color = "white";
+      p1.style.color = "white";
+
     } else {
       p1.textContent = "The CPU chose: " + cChoice;
       p.textContent = "It's a tie! Play Again!";
+      p.style.color = "white";
+      p1.style.color = "white";
     }
 
     if(playerWins >= 5){

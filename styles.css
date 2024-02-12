@@ -1,7 +1,43 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+#mainContainer{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20px;    
+        
+}
+
+button{
+    background-color: #008CBA;
+    width: 160px;
+    height: 60px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
 #bContainer{
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
+    gap: 20px;
+    
 }
+
+#container{
+    display: flex;
+    flex-direction: column;  
+    align-items: center;         
+}
+
+
+
 
