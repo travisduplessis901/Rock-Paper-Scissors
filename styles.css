@@ -38,6 +38,24 @@ button{
     align-items: center;         
 }
 
+#hands{    
+    height: 497px;
+    display: flex;
+    gap: 160px;
+    position: absolute;
+    top: 125px;
+
+}
+
+#scoreKeep{
+    display: flex;
+    color: white;
+    align-items: center;
+    margin-top: 125px;
+    gap: 750px;
+    font-size: 27px;
+    font-weight: 600;
+}
 
 
 

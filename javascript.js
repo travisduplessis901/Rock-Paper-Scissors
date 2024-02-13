@@ -39,7 +39,17 @@ function getComputerChoice() {
   container.appendChild(p);
   container.appendChild(score);
   
-  
+  const leftImage = document.querySelector('#leftHand');
+    const rightImage = document.querySelector("#rightHand");
+
+    const playerScore = document.createElement('span');   
+    playerScore.setAttribute("id", "playerScore");
+
+    const cpuScore = document.createElement('span');
+    cpuScore.setAttribute("id", "cpuScore");
+
+    leftImage.appendChild(playerScore);
+    rightImage.appendChild(cpuScore);
 
   
 
@@ -110,6 +120,9 @@ function getComputerChoice() {
       p.style.color = "white";
       p1.style.color = "white";
 
+      playerScore.textContent = playerWins;
+      cpuScore.textContent = cpuWins;
+
     } else if (round == "CPU") {
       cpuWins = cpuWins + 1;
       p1.textContent = "The CPU chose: " + cChoice;
@@ -117,11 +130,17 @@ function getComputerChoice() {
       p.style.color = "white";
       p1.style.color = "white";
 
+      playerScore.textContent = playerWins;
+      cpuScore.textContent = cpuWins;
+
     } else {
       p1.textContent = "The CPU chose: " + cChoice;
       p.textContent = "It's a tie! Play Again!";
       p.style.color = "white";
       p1.style.color = "white";
+
+      playerScore.textContent = playerWins;
+      cpuScore.textContent = cpuWins;
     }
 
     if(playerWins >= 5){
@@ -150,8 +169,12 @@ function getComputerChoice() {
 
     p.textContent = "";
     p1.textContent = "";
+    playerScore.textContent = "";
+    cpuScore.textContent = "";
     resetB.remove();
   } 
+
+
 
   
 
