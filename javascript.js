@@ -107,6 +107,10 @@ function getComputerChoice() {
   
 
   function playRound(pChoice){
+
+    rotate();
+
+    
     let cChoice = getComputerChoice();
 
     let round = roundResult(pChoice, cChoice);
@@ -173,6 +177,18 @@ function getComputerChoice() {
     cpuScore.textContent = "";
     resetB.remove();
   } 
+
+  function rotate(){
+    const lHand = document.querySelector("#left");
+    lHand.style.transform = "rotate(15deg)";
+    setTimeout(() => {lHand.style.transform = "rotate(-5deg)"}, 400);
+    setTimeout(() => {lHand.style.transform = "rotate(15deg)"}, 800);
+    
+    const rHand = document.querySelector("#right");
+    rHand.style.transform = "rotate(-15deg)";
+    setTimeout(() => {rHand.style.transform = "rotate(5deg)"}, 400);
+    setTimeout(() => {rHand.style.transform = "rotate(-15deg)"}, 800);
+  }
 
 
 
