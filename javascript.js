@@ -108,7 +108,7 @@ let playerWins = 0;
 
 function playRound(pChoice) {
 
-  rotate();
+  bothHands("scissors", "paper");
 
 
   let cChoice = getComputerChoice();
@@ -191,41 +191,48 @@ function rotate() {
 }
 
 function replaceHand(playerHand, cpuHand) {
-  const lefty = document.querySelector("#left");
-  const righty = document.querySelector("#right");
 
-  switch (playerHand) {
+    const lefty = document.querySelector("#left");
+    const righty = document.querySelector("#right");
 
-    case "rock":
-      lefty.src = "/images/leftHand.png"
-      break;
+    switch (playerHand) {
 
-    case "scissors":
-      lefty.src = "/images/leftScissors.png";
-      break;
+      case "rock":
+        lefty.src = "/images/leftHand.png"
+        break;
 
-    case "paper":
-      lefty.src = "/images/leftPaper.png";
-      break;
-  }
+      case "scissors":
+        lefty.src = "/images/leftScissors.png";
+        break;
 
-  switch (cpuHand){
+      case "paper":
+        lefty.src = "/images/leftPaper.png";
+        break;
+    }
 
-    case "rock":
-      righty.src = "/images/rightHand.png";
-      break;
+    switch (cpuHand) {
 
-    case "scissors":
-      righty.src = "/images/rightScissors.png";
-      break;
+      case "rock":
+        righty.src = "/images/rightHand.png";
+        break;
 
-    case "paper":
-      righty.src = "/images/rightPaper.png";
-      break;
-  }
+      case "scissors":
+        righty.src = "/images/rightScissors.png";
+        break;
+
+      case "paper":
+        righty.src = "/images/rightPaper.png";
+        break;
+    }
 
 }
 
+async function bothHands(){
+
+  await rotate().then () => replaceHand("scissors", "paper");
+  //await(replaceHand("scissors","paper"));
+
+}
 
 
 
