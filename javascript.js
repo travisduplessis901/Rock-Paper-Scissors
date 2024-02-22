@@ -108,7 +108,7 @@ let playerWins = 0;
 
 function playRound(pChoice) {
 
-  bothHands("scissors", "paper");
+  bothHands();
 
 
   let cChoice = getComputerChoice();
@@ -179,19 +179,27 @@ function resetEverything(resetB) {
 }
 
 function rotate() {
-  const lHand = document.querySelector("#left");
-  lHand.style.transform = "rotate(15deg)";
-  setTimeout(() => { lHand.style.transform = "rotate(-5deg)" }, 400);
-  setTimeout(() => { lHand.style.transform = "rotate(15deg)" }, 800);
 
-  const rHand = document.querySelector("#right");
-  rHand.style.transform = "rotate(-15deg)";
-  setTimeout(() => { rHand.style.transform = "rotate(5deg)" }, 400);
-  setTimeout(() => { rHand.style.transform = "rotate(-15deg)" }, 800);
+  return new Promise((resolve) => {
+    const lHand = document.querySelector("#left");
+    lHand.style.transform = "rotate(15deg)";
+    setTimeout(() => { lHand.style.transform = "rotate(-5deg)" }, 400);
+    setTimeout(() => { lHand.style.transform = "rotate(15deg)" }, 800);
+
+    const rHand = document.querySelector("#right");
+    rHand.style.transform = "rotate(-15deg)";
+    setTimeout(() => { rHand.style.transform = "rotate(5deg)" }, 400);
+    setTimeout(() => { rHand.style.transform = "rotate(-15deg)" }, 800);
+
+    setTimeout(() => {resolve(true)}, 1000);
+
+  })
 }
 
 function replaceHand(playerHand, cpuHand) {
 
+
+  return new Promise((resolve, reject) => {
     const lefty = document.querySelector("#left");
     const righty = document.querySelector("#right");
 
@@ -225,12 +233,17 @@ function replaceHand(playerHand, cpuHand) {
         break;
     }
 
+    resolve(true);
+
+  })
+
 }
 
 async function bothHands(){
 
-  await rotate().then () => replaceHand("scissors", "paper");
-  //await(replaceHand("scissors","paper"));
+  let rotateResult = await rotate()//.then (() => replaceHand("scissors", "paper"));
+  console.log(rotateResult);
+  let replaceHandResult = await replaceHand("scissors" , "paper");
 
 }
 
