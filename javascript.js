@@ -31,6 +31,10 @@ btnRock.addEventListener('click', () => { playRound(btnRock.textContent) });
 btnScissors.addEventListener('click', () => { playRound(btnScissors.textContent) });
 btnPaper.addEventListener('click', () => { playRound(btnPaper.textContent) });
 
+btnRock.addEventListener('click' , () => {baseline()});
+btnPaper.addEventListener('click', () => {baseline()});
+btnScissors.addEventListener('click', () => {baseline()});
+
 const container = document.querySelector("#container");
 const p = document.createElement('p');
 const p1 = document.createElement('p');
@@ -108,10 +112,9 @@ let playerWins = 0;
 
 function playRound(pChoice) {
 
-  bothHands();
-
-
   let cChoice = getComputerChoice();
+
+  bothHands(pChoice, cChoice);
 
   let round = roundResult(pChoice, cChoice);
 
@@ -175,6 +178,7 @@ function resetEverything(resetB) {
   p1.textContent = "";
   playerScore.textContent = "";
   cpuScore.textContent = "";
+  baseline();
   resetB.remove();
 }
 
@@ -198,6 +202,9 @@ function rotate() {
 
 function replaceHand(playerHand, cpuHand) {
 
+  playerHand = playerHand.toLowerCase();
+  cpuHand = cpuHand.toLowerCase();
+
 
   return new Promise((resolve, reject) => {
     const lefty = document.querySelector("#left");
@@ -206,30 +213,36 @@ function replaceHand(playerHand, cpuHand) {
     switch (playerHand) {
 
       case "rock":
-        lefty.src = "/images/leftHand.png"
         break;
 
       case "scissors":
         lefty.src = "/images/leftScissors.png";
+        righty.style.width = "550px";
+        righty.style.height = "456px";
         break;
 
       case "paper":
         lefty.src = "/images/leftPaper.png";
+        righty.style.width = "550px";
+        righty.style.height = "456px";
         break;
     }
 
     switch (cpuHand) {
 
       case "rock":
-        righty.src = "/images/rightHand.png";
         break;
 
       case "scissors":
         righty.src = "/images/rightScissors.png";
+        righty.style.width = "550px";
+        righty.style.height = "456px";
         break;
 
       case "paper":
         righty.src = "/images/rightPaper.png";
+        righty.style.width = "550px";
+        righty.style.height = "456px";
         break;
     }
 
@@ -239,12 +252,20 @@ function replaceHand(playerHand, cpuHand) {
 
 }
 
-async function bothHands(){
+async function bothHands(pChoice, cChoice){
 
   let rotateResult = await rotate()//.then (() => replaceHand("scissors", "paper"));
   console.log(rotateResult);
-  let replaceHandResult = await replaceHand("scissors" , "paper");
+  let replaceHandResult = await replaceHand(pChoice, cChoice);
 
+}
+
+function baseline(){
+  const lefty = document.querySelector("#left");
+  const righty = document.querySelector("#right");
+
+  lefty.src = "/images/leftHand.png";
+  righty.src = "/images/rightHand.png";
 }
 
 
